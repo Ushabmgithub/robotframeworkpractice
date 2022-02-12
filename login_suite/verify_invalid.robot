@@ -20,8 +20,9 @@ TC3       Mark     Mark123    Greek
 
 *** Keywords ***
 Verify InValid Credentials Template
-  Input Text    id=authUser    john
-  Input Text    id=clearPass    john123
-  Select From List By Label    name=languageChoice      Dutch
+  [Arguments]    ${username}     ${password}    ${language}    ${expected_title}
+  Input Text    id=authUser    ${username}
+  Input Text    id=clearPass    ${password}
+  Select From List By Label    name=languageChoice      ${language}
   Click Element    xpath=//button[@type='submit']
-  Element Should Contain    //div[contains(text(),'Invalid')]    Invalid
+  Element Should Contain    //div[contains(text(),'Invalid')]    ${expected_output}
