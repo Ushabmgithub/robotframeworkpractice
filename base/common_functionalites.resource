@@ -2,13 +2,31 @@
 Documentation   This file contains reusable keywords
 
 Library     SeleniumLibrary
+Library    OperatingSystem
+
+*** Variables ***
+${BROWSER_NAME}         chrome
+${URL}      https://demo.openemr.io/b/openemr/index.php
+
 
 *** Keywords ***
 Launch Browser
-    Open Browser      browser=chrome        executable_path=${EXECDIR}${/}drivers${/}chromedriver
+
+    Set Local Variable    ${driver}        chromedriver
+
+    IF    '${BROWSER_NAME}' == 'firefox'
+        Set Local Variable    ${drivers}        geckodriver.exe
+    ELSE IF  '${BROWSER_NAME}' == 'edge'
+        Set Local Variable    ${drivers}        msedgedriver.exe
+    ELSE IF  '${BROWSER_NAME}' == 'safari'
+        Set Local Variable    ${drivers}        safaridriver.exe
+    END
+    Append To Environment Variable    path     ${EXECDIR}\\drivers
+    Open Browser       url=${URL}        browser= ${BROWSER_NAME}
     Maximize Browser Window
     Set Selenium Implicit Wait    30s
-    Go To    url=https://demo.openemr.io/b/openemr
+    Set Screenshot Directory    ${EXECDIR}${/}screenshot
+
 
 End Browser
     Capture Page Screenshot
