@@ -1,27 +1,764 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.7.0 on win32)" generated="20220213 14:52:10.084" rpa="false" schemaversion="2">
-<suite id="s1" name="Verify Valid" source="C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\login_suite\verify_valid.robot">
+<robot generator="Robot 4.1.3 (Python 3.7.0 on win32)" generated="20220213 18:00:13.752" rpa="false" schemaversion="2">
+<suite id="s1" name="Verify Invalid" source="C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\login_suite\verify_invalid.robot">
 <test id="s1-t1" name="TC1">
-<status status="FAIL" starttime="20220213 14:52:11.972" endtime="20220213 14:52:11.975">Test case contains no keywords.</status>
+<kw name="Launch Browser" library="common_functionalites" type="SETUP">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${driver}</arg>
+<arg>chromedriver</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<msg timestamp="20220213 18:00:14.057" level="INFO">${driver} = chromedriver</msg>
+<status status="PASS" starttime="20220213 18:00:14.055" endtime="20220213 18:00:14.057"/>
+</kw>
+<if>
+<branch type="IF" condition="'${BROWSER_NAME}' == 'firefox'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>geckodriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:14.057" endtime="20220213 18:00:14.057"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:14.057" endtime="20220213 18:00:14.057"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'edge'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>msedgedriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:14.058" endtime="20220213 18:00:14.058"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:14.058" endtime="20220213 18:00:14.058"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'safari'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>safaridriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:14.058" endtime="20220213 18:00:14.058"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:14.058" endtime="20220213 18:00:14.058"/>
+</branch>
+<status status="PASS" starttime="20220213 18:00:14.057" endtime="20220213 18:00:14.058"/>
+</if>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<arg>path</arg>
+<arg>${EXECDIR}\\drivers</arg>
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
+<msg timestamp="20220213 18:00:14.059" level="INFO">Environment variable 'path' set to value 'C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\;C:\Users\Harish banakar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_261\bin;C:\Users\Harish banakar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Harish banakar\AppData\Local\GitHubDesktop\bin;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers'.</msg>
+<status status="PASS" starttime="20220213 18:00:14.058" endtime="20220213 18:00:14.059"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${URL}</arg>
+<arg>browser= ${BROWSER_NAME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220213 18:00:14.060" level="INFO">Opening browser ' chrome' to base url 'https://demo.openemr.io/b/openemr/index.php'.</msg>
+<status status="PASS" starttime="20220213 18:00:14.059" endtime="20220213 18:00:22.607"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220213 18:00:22.607" endtime="20220213 18:00:22.744"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>30s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20220213 18:00:22.744" endtime="20220213 18:00:22.747"/>
+</kw>
+<kw name="Set Screenshot Directory" library="SeleniumLibrary">
+<arg>${EXECDIR}${/}screenshot</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" starttime="20220213 18:00:22.747" endtime="20220213 18:00:22.748"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:14.055" endtime="20220213 18:00:22.749"/>
+</kw>
+<kw name="Verify Invalid Credential Template">
+<arg>John</arg>
+<arg>john123</arg>
+<arg>Dutch</arg>
+<arg>Invalid username or password</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=authUser</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:22.752" level="INFO">Typing text 'John' into text field 'id=authUser'.</msg>
+<status status="PASS" starttime="20220213 18:00:22.751" endtime="20220213 18:00:22.872"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id=clearPass</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:22.873" level="INFO">Typing password into text field 'id=clearPass'.</msg>
+<msg timestamp="20220213 18:00:22.924" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220213 18:00:22.989" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220213 18:00:22.872" endtime="20220213 18:00:22.989"/>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name=languageChoice</arg>
+<arg>${language}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20220213 18:00:22.990" level="INFO">Selecting options from selection list 'name=languageChoice' by label Dutch.</msg>
+<status status="PASS" starttime="20220213 18:00:22.989" endtime="20220213 18:00:23.080"/>
+</kw>
+<kw name="Click Login" library="login_page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LOGIN_LOCATOR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:23.081" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20220213 18:00:23.081" endtime="20220213 18:00:24.367"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:23.080" endtime="20220213 18:00:24.367"/>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>//div[contains(text(),'Invalid')]</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20220213 18:00:24.408" level="INFO">Element '//div[contains(text(),'Invalid')]' contains text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20220213 18:00:24.367" endtime="20220213 18:00:24.408"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:22.750" endtime="20220213 18:00:24.408"/>
+</kw>
+<kw name="End Browser" library="common_functionalites" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220213 18:00:24.678" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshot/selenium-screenshot-33.png"&gt;&lt;img src="screenshot/selenium-screenshot-33.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220213 18:00:24.410" endtime="20220213 18:00:24.679"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220213 18:00:24.679" endtime="20220213 18:00:26.982"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:24.409" endtime="20220213 18:00:26.983"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:14.054" endtime="20220213 18:00:26.985"/>
 </test>
-<doc>This suite file verifies all test cases related to valid credentials</doc>
-<status status="FAIL" starttime="20220213 14:52:10.089" endtime="20220213 14:52:11.986"/>
+<test id="s1-t2" name="TC2">
+<kw name="Launch Browser" library="common_functionalites" type="SETUP">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${driver}</arg>
+<arg>chromedriver</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<msg timestamp="20220213 18:00:27.000" level="INFO">${driver} = chromedriver</msg>
+<status status="PASS" starttime="20220213 18:00:26.997" endtime="20220213 18:00:27.000"/>
+</kw>
+<if>
+<branch type="IF" condition="'${BROWSER_NAME}' == 'firefox'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>geckodriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:27.001" endtime="20220213 18:00:27.001"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:27.000" endtime="20220213 18:00:27.001"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'edge'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>msedgedriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:27.001" endtime="20220213 18:00:27.001"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:27.001" endtime="20220213 18:00:27.001"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'safari'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>safaridriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:27.002" endtime="20220213 18:00:27.002"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:27.001" endtime="20220213 18:00:27.002"/>
+</branch>
+<status status="PASS" starttime="20220213 18:00:27.000" endtime="20220213 18:00:27.002"/>
+</if>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<arg>path</arg>
+<arg>${EXECDIR}\\drivers</arg>
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
+<msg timestamp="20220213 18:00:27.002" level="INFO">Environment variable 'path' set to value 'C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\;C:\Users\Harish banakar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_261\bin;C:\Users\Harish banakar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Harish banakar\AppData\Local\GitHubDesktop\bin;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers'.</msg>
+<status status="PASS" starttime="20220213 18:00:27.002" endtime="20220213 18:00:27.002"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${URL}</arg>
+<arg>browser= ${BROWSER_NAME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220213 18:00:27.003" level="INFO">Opening browser ' chrome' to base url 'https://demo.openemr.io/b/openemr/index.php'.</msg>
+<status status="PASS" starttime="20220213 18:00:27.002" endtime="20220213 18:00:33.164"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220213 18:00:33.164" endtime="20220213 18:00:33.286"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>30s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20220213 18:00:33.286" endtime="20220213 18:00:33.289"/>
+</kw>
+<kw name="Set Screenshot Directory" library="SeleniumLibrary">
+<arg>${EXECDIR}${/}screenshot</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" starttime="20220213 18:00:33.290" endtime="20220213 18:00:33.290"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:26.994" endtime="20220213 18:00:33.291"/>
+</kw>
+<kw name="Verify Invalid Credential Template">
+<arg>peter</arg>
+<arg>peter123</arg>
+<arg>Danish</arg>
+<arg>Invalid username or password</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=authUser</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:33.293" level="INFO">Typing text 'peter' into text field 'id=authUser'.</msg>
+<status status="PASS" starttime="20220213 18:00:33.292" endtime="20220213 18:00:33.407"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id=clearPass</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:33.407" level="INFO">Typing password into text field 'id=clearPass'.</msg>
+<msg timestamp="20220213 18:00:33.462" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220213 18:00:33.531" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220213 18:00:33.407" endtime="20220213 18:00:33.531"/>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name=languageChoice</arg>
+<arg>${language}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20220213 18:00:33.531" level="INFO">Selecting options from selection list 'name=languageChoice' by label Danish.</msg>
+<status status="PASS" starttime="20220213 18:00:33.531" endtime="20220213 18:00:33.623"/>
+</kw>
+<kw name="Click Login" library="login_page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LOGIN_LOCATOR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220213 18:00:33.625" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20220213 18:00:33.624" endtime="20220213 18:00:34.859"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:33.623" endtime="20220213 18:00:34.860"/>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>//div[contains(text(),'Invalid')]</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20220213 18:00:34.897" level="INFO">Element '//div[contains(text(),'Invalid')]' contains text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20220213 18:00:34.860" endtime="20220213 18:00:34.897"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:33.291" endtime="20220213 18:00:34.897"/>
+</kw>
+<kw name="End Browser" library="common_functionalites" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220213 18:00:35.098" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshot/selenium-screenshot-34.png"&gt;&lt;img src="screenshot/selenium-screenshot-34.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220213 18:00:34.899" endtime="20220213 18:00:35.098"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220213 18:00:35.098" endtime="20220213 18:00:37.358"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:34.898" endtime="20220213 18:00:37.359"/>
+</kw>
+<status status="PASS" starttime="20220213 18:00:26.992" endtime="20220213 18:00:37.361"/>
+</test>
+<test id="s1-t3" name="TC3">
+<kw name="Launch Browser" library="common_functionalites" type="SETUP">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${driver}</arg>
+<arg>chromedriver</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<msg timestamp="20220213 18:00:37.371" level="INFO">${driver} = chromedriver</msg>
+<status status="PASS" starttime="20220213 18:00:37.369" endtime="20220213 18:00:37.371"/>
+</kw>
+<if>
+<branch type="IF" condition="'${BROWSER_NAME}' == 'firefox'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>geckodriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:37.372" endtime="20220213 18:00:37.372"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:37.371" endtime="20220213 18:00:37.372"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'edge'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>msedgedriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:37.373" endtime="20220213 18:00:37.373"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:37.372" endtime="20220213 18:00:37.373"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'safari'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>safaridriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:37.374" endtime="20220213 18:00:37.374"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:00:37.374" endtime="20220213 18:00:37.374"/>
+</branch>
+<status status="PASS" starttime="20220213 18:00:37.371" endtime="20220213 18:00:37.374"/>
+</if>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<arg>path</arg>
+<arg>${EXECDIR}\\drivers</arg>
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
+<msg timestamp="20220213 18:00:37.375" level="INFO">Environment variable 'path' set to value 'C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\;C:\Users\Harish banakar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_261\bin;C:\Users\Harish banakar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Harish banakar\AppData\Local\GitHubDesktop\bin;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers'.</msg>
+<status status="PASS" starttime="20220213 18:00:37.375" endtime="20220213 18:00:37.376"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${URL}</arg>
+<arg>browser= ${BROWSER_NAME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220213 18:00:37.378" level="INFO">Opening browser ' chrome' to base url 'https://demo.openemr.io/b/openemr/index.php'.</msg>
+<msg timestamp="20220213 18:00:44.885" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
+<msg timestamp="20220213 18:00:44.938" level="FAIL">WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: received Inspector.detached event
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3BB8+1063864]
+	Ordinal0 [0x00AD65A0+1009056]
+	Ordinal0 [0x00AD6173+1007987]
+	Ordinal0 [0x00AD5780+1005440]
+	Ordinal0 [0x00AD48B7+1001655]
+	Ordinal0 [0x00AD4C87+1002631]
+	Ordinal0 [0x00AE0361+1049441]
+	Ordinal0 [0x00AD5F2D+1007405]
+	Ordinal0 [0x00AD6B9E+1010590]
+	Ordinal0 [0x00AD618E+1008014]
+	Ordinal0 [0x00AD5780+1005440]
+	Ordinal0 [0x00AD48B7+1001655]
+	Ordinal0 [0x00AD4B76+1002358]
+	Ordinal0 [0x00AE52AA+1069738]
+	Ordinal0 [0x00B38FBD+1413053]
+	Ordinal0 [0x00B2868C+1345164]
+	Ordinal0 [0x00B38A0A+1411594]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
+<status status="FAIL" starttime="20220213 18:00:37.376" endtime="20220213 18:00:44.939"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:44.939" endtime="20220213 18:00:44.940"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>30s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:44.940" endtime="20220213 18:00:44.940"/>
+</kw>
+<kw name="Set Screenshot Directory" library="SeleniumLibrary">
+<arg>${EXECDIR}${/}screenshot</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="NOT RUN" starttime="20220213 18:00:44.940" endtime="20220213 18:00:44.940"/>
+</kw>
+<status status="FAIL" starttime="20220213 18:00:37.368" endtime="20220213 18:00:44.941"/>
+</kw>
+<kw name="End Browser" library="common_functionalites" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220213 18:01:09.193" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
+<msg timestamp="20220213 18:01:09.258" level="FAIL">WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
+<status status="FAIL" starttime="20220213 18:00:44.943" endtime="20220213 18:01:09.258"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220213 18:01:09.258" endtime="20220213 18:01:11.365"/>
+</kw>
+<status status="FAIL" starttime="20220213 18:00:44.942" endtime="20220213 18:01:11.365">WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</status>
+</kw>
+<status status="FAIL" starttime="20220213 18:00:37.368" endtime="20220213 18:01:11.366">Setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: received Inspector.detached event
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3BB8+1063864]
+	Ordinal0 [0x00AD65A0+1009056]
+	Ordinal0 [0x00AD6173+1007987]
+	Ordinal0 [0x00AD5780+1005440]
+	Ordinal0 [0x00AD48B7+1001655]
+	Ordinal0 [0x00AD4C87+1002631]
+	Ordinal0 [0x00AE0361+1049441]
+	Ordinal0 [0x00AD5F2D+1007405]
+	Ordinal0 [0x00AD6B9E+1010590]
+	Ordinal0 [0x00AD618E+1008014]
+	Ordinal0 [0x00AD5780+1005440]
+	Ordinal0 [0x00AD48B7+1001655]
+	Ordinal0 [0x00AD4B76+1002358]
+	Ordinal0 [0x00AE52AA+1069738]
+	Ordinal0 [0x00B38FBD+1413053]
+	Ordinal0 [0x00B2868C+1345164]
+	Ordinal0 [0x00B38A0A+1411594]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+
+
+Also teardown failed:
+WebDriverException: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</status>
+</test>
+<test id="s1-t4" name="TC4">
+<kw name="Launch Browser" library="common_functionalites" type="SETUP">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${driver}</arg>
+<arg>chromedriver</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<msg timestamp="20220213 18:01:11.382" level="INFO">${driver} = chromedriver</msg>
+<status status="PASS" starttime="20220213 18:01:11.380" endtime="20220213 18:01:11.382"/>
+</kw>
+<if>
+<branch type="IF" condition="'${BROWSER_NAME}' == 'firefox'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>geckodriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:01:11.382" endtime="20220213 18:01:11.382"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:01:11.382" endtime="20220213 18:01:11.382"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'edge'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>msedgedriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:01:11.383" endtime="20220213 18:01:11.383"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:01:11.383" endtime="20220213 18:01:11.383"/>
+</branch>
+<branch type="ELSE IF" condition="'${BROWSER_NAME}' == 'safari'">
+<kw name="Set Local Variable" library="BuiltIn">
+<arg>${drivers}</arg>
+<arg>safaridriver.exe</arg>
+<doc>Makes a variable available everywhere within the local scope.</doc>
+<status status="NOT RUN" starttime="20220213 18:01:11.383" endtime="20220213 18:01:11.383"/>
+</kw>
+<status status="NOT RUN" starttime="20220213 18:01:11.383" endtime="20220213 18:01:11.383"/>
+</branch>
+<status status="PASS" starttime="20220213 18:01:11.382" endtime="20220213 18:01:11.384"/>
+</if>
+<kw name="Append To Environment Variable" library="OperatingSystem">
+<arg>path</arg>
+<arg>${EXECDIR}\\drivers</arg>
+<doc>Appends given ``values`` to environment variable ``name``.</doc>
+<msg timestamp="20220213 18:01:11.384" level="INFO">Environment variable 'path' set to value 'C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python37-32\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Harish banakar\AppData\Local\Programs\Python\Python310\;C:\Users\Harish banakar\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_261\bin;C:\Users\Harish banakar\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Harish banakar\AppData\Local\GitHubDesktop\bin;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers;C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\drivers'.</msg>
+<status status="PASS" starttime="20220213 18:01:11.384" endtime="20220213 18:01:11.384"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>url=${URL}</arg>
+<arg>browser= ${BROWSER_NAME}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220213 18:01:11.385" level="INFO">Opening browser ' chrome' to base url 'https://demo.openemr.io/b/openemr/index.php'.</msg>
+<status status="PASS" starttime="20220213 18:01:11.384" endtime="20220213 18:01:17.518"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220213 18:01:17.519" endtime="20220213 18:01:17.643"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>30s</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20220213 18:01:17.644" endtime="20220213 18:01:17.649"/>
+</kw>
+<kw name="Set Screenshot Directory" library="SeleniumLibrary">
+<arg>${EXECDIR}${/}screenshot</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" starttime="20220213 18:01:17.650" endtime="20220213 18:01:17.650"/>
+</kw>
+<status status="PASS" starttime="20220213 18:01:11.380" endtime="20220213 18:01:17.651"/>
+</kw>
+<kw name="Verify Invalid Credential Template">
+<arg>peter</arg>
+<arg>${EMPTY}</arg>
+<arg>Greek</arg>
+<arg>Invalid username or password</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id=authUser</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:01:17.655" level="INFO">Typing text 'peter' into text field 'id=authUser'.</msg>
+<status status="PASS" starttime="20220213 18:01:17.654" endtime="20220213 18:01:17.780"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id=clearPass</arg>
+<arg>${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220213 18:01:17.781" level="INFO">Typing password into text field 'id=clearPass'.</msg>
+<msg timestamp="20220213 18:01:17.843" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220213 18:01:17.890" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220213 18:01:17.781" endtime="20220213 18:01:17.891"/>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<arg>name=languageChoice</arg>
+<arg>${language}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<msg timestamp="20220213 18:01:17.891" level="INFO">Selecting options from selection list 'name=languageChoice' by label Greek.</msg>
+<status status="PASS" starttime="20220213 18:01:17.891" endtime="20220213 18:01:17.999"/>
+</kw>
+<kw name="Click Login" library="login_page">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${LOGIN_LOCATOR}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220213 18:01:18.001" level="INFO">Clicking element 'xpath=//button[@type='submit']'.</msg>
+<status status="PASS" starttime="20220213 18:01:18.000" endtime="20220213 18:01:19.342"/>
+</kw>
+<status status="PASS" starttime="20220213 18:01:18.000" endtime="20220213 18:01:19.343"/>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<arg>//div[contains(text(),'Invalid')]</arg>
+<arg>${expected_error}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<msg timestamp="20220213 18:01:19.392" level="INFO">Element '//div[contains(text(),'Invalid')]' contains text 'Invalid username or password'.</msg>
+<status status="PASS" starttime="20220213 18:01:19.345" endtime="20220213 18:01:19.392"/>
+</kw>
+<status status="PASS" starttime="20220213 18:01:17.652" endtime="20220213 18:01:19.392"/>
+</kw>
+<kw name="End Browser" library="common_functionalites" type="TEARDOWN">
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20220213 18:01:19.592" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="screenshot/selenium-screenshot-35.png"&gt;&lt;img src="screenshot/selenium-screenshot-35.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20220213 18:01:19.394" endtime="20220213 18:01:19.592"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220213 18:01:19.592" endtime="20220213 18:01:21.763"/>
+</kw>
+<status status="PASS" starttime="20220213 18:01:19.393" endtime="20220213 18:01:21.764"/>
+</kw>
+<status status="PASS" starttime="20220213 18:01:11.379" endtime="20220213 18:01:21.765"/>
+</test>
+<doc>This suit file handles all the test case related to the
+invalid credentials</doc>
+<status status="FAIL" starttime="20220213 18:00:13.757" endtime="20220213 18:01:21.775"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="3" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Verify Valid">Verify Valid</stat>
+<stat pass="3" fail="1" skip="0" id="s1" name="Verify Invalid">Verify Invalid</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20220213 14:52:11.832" level="ERROR">[ DataDriver ] Error in robot file:
-  File "C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\login_suite\verify_valid.robot", line 0</msg>
-<msg timestamp="20220213 14:52:11.844" level="ERROR">In source file:
-  File "C:\Users\Harish banakar\Desktop\LT4\robotframeworkpractice\login_suite\../test_data/openEMRData.xlsx", line 0</msg>
-<msg timestamp="20220213 14:52:11.967" level="ERROR">Calling method '_start_suite' of listener 'DataDriver' failed: KeyError: 'Worksheet verify_valid_credentials does not exist.'</msg>
+<msg timestamp="20220213 18:00:44.885" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
+<msg timestamp="20220213 18:01:09.193" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: chrome not reachable
+  (Session info: chrome=98.0.4758.82)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C57AC3+2587331]
+	Ordinal0 [0x00BEADD1+2141649]
+	Ordinal0 [0x00AE3A80+1063552]
+	Ordinal0 [0x00AD8222+1016354]
+	Ordinal0 [0x00AD8A58+1018456]
+	Ordinal0 [0x00ADA292+1024658]
+	Ordinal0 [0x00AD3F79+999289]
+	Ordinal0 [0x00AE4EF0+1068784]
+	Ordinal0 [0x00B381D2+1409490]
+	Ordinal0 [0x00B284A6+1344678]
+	Ordinal0 [0x00B053F6+1201142]
+	Ordinal0 [0x00B062E6+1204966]
+	GetHandleVerifier [0x00DFDF22+1680738]
+	GetHandleVerifier [0x00EB0DBC+2413564]
+	GetHandleVerifier [0x00CED151+563089]
+	GetHandleVerifier [0x00CEBF13+558419]
+	Ordinal0 [0x00BF081E+2164766]
+	Ordinal0 [0x00BF5508+2184456]
+	Ordinal0 [0x00BF5650+2184784]
+	Ordinal0 [0x00BFF5BC+2225596]
+	BaseThreadInitThunk [0x7679FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x770E7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x770E7A6E+238]
+</msg>
 </errors>
 </robot>
